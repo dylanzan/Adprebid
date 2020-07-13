@@ -1,0 +1,140 @@
+//version: 20151215
+package com.adkit.demandsideplatform.model.rtb;
+
+option java_package = "com.adkit.demandsideplatform.model.rtb";
+option java_outer_classname = "TencentBidding";
+message Request
+{
+	message Impression
+	{
+		message ImpExt
+		{
+			optional uint32 chid = 1;           //渠道id
+		}
+		message Banner
+		{
+			optional uint32 width = 1;     		//广告位宽度
+			optional uint32 height = 2;    		//广告位高度
+			repeated string mimes = 3;          //支持的素材类型(如 "jpg","swf")
+			optional string extra_style = 4;	//该广告位除广告位规格外额外允许投放的素材尺寸：960*90;1000*90(分号分隔多个 宽*高)
+			optional uint32 visibility = 5;		//广告位所在的屏幕位置: 0:未知 1：首屏 2：非首屏
+		}
+		message Video
+		{
+			repeated string mimes = 1;     		//支持播放的内容类型(如 "flv","swf")
+			optional uint32 linearity = 2; 		//目前没有实际作用，linear/in-stream(1) or non-linear/overlay(2)
+			optional uint32 minduration = 3; 	//广告视频最短时长 单位毫秒
+			optional uint32 maxduration = 4;  	//广告视频最长时长 单位毫秒
+			optional uint32 protocol = 5;  	 	//目前没有实际作用，vast 1.0/2.0/3.0/wrapper
+			optional uint32 width = 6;     		//广告位宽度
+			optional uint32 height = 7;    		//广告位高度
+		}
+		message MaterialFormat
+		{
+			optional uint32 width = 1;     		//广告位宽度,txt类型时表示中文个数
+			optional uint32 height = 2;    		//广告位高度,txt类型时高度为0
+			optional string mimes = 3;     		//此种播放形式要求的,素材允许的类型,全部小写,多个格式用,隔开 如“swf,jgp,txt”
+		}
+		optional string id = 1;     			//标识每一次曝光的唯一ID
+		optional string tagid = 2;     			//广告位ID，同资源报表中的广告位ID，如 Ent_F_Width1
+		optional float bidfloor = 3;   			//曝光底价，单位 千次曝光分
+		optional Banner banner = 4;    			//banner广告位
+		optional Video video = 5;      			//video广告位
+		optional string clientid = 6;			//无效字段
+		optional string tradecode = 7;       	//该广告位的限制行业编码列表，如：018;014;008;006;001;004;002
+		optional string sns_lists = 8;			//(暂停使用) 该广告位允许的社交化播放形式列表
+		optional string dealid = 9;			    //仅GPB方式使用 用来告诉DSP是哪次投放
+		repeated MaterialFormat adm_require = 10;     //无效字段
+		optional ImpExt imp_ext = 11;           //无效字段
+		optional string channel = 12;            //频道号
+	}
+	message Site
+	{
+		optional string name = 1; 				//网站名称
+		optional string page = 2; 				//当前页面url
+		optional string ref = 3;  				//referrer url
+		optional string channel = 4;            //频道号
+	}
+	message Device
+	{
+		optional string ip = 1; 				//设备ip
+		optional string ua = 2; 				//设备user agent
+		message Geo
+		{
+			optional float latitude = 1;		//纬度，取值从-90到90，南为负值
+			optional float longitude = 2;		//经度，取值从-180到180，西为负值
+		}
+		optional Geo geo = 3;					//地理位置信息，只提供一定精度模糊值，产生规则详见说明文档。暂无
+		optional string idfa = 4;				//加密方式参见文档
+		optional uint32 idfa_enc = 5;			//0: 明文，1 ：MD5, 2:SHA1 默认填0
+		optional string openudid = 6;			//加密方式参见文档
+		optional uint32 carrier = 7;			//运营商标识，0 Wifi，70120 中国移动，70121 中国电信，70123 中国联通（与OpenRTB定义有差异），暂无
+		optional string make = 8;				//设备品牌，如"Apple"，暂无
+		optional string model = 9;				//设备型号，如"iPhone"
+		optional string os = 10;				//设备操作系统，如"iOS"
+		optional string Osv = 11;				//设备操作系统版本，如"3.1.2"，
+		optional uint32 Js = 12;				//1:支持JavaScript; 0:不支持
+		optional uint32 connectiontype = 13;	//连接类型，0：未知; 1：以太网; 2：Wifi; 3：移动数据-未知; 4：2G; 5：3G; 6：4G; 
+		optional uint32 devicetype = 14;		//1：手机/平板  2：个人电脑  3：TV。
+		optional string mac = 15;               //加密方式参见文档
+		optional string imei = 16;              //加密方式参见文档
+		optional string androidid = 17;         //加密方式参见文档
+	}
+	message User
+	{  
+		optional string id = 1; 				//tuid,tencent user id
+		optional string buyerid=2; 				//cookie mapping 匹配的 dsp user id
+		optional string gender = 3;     		//(目前不使用) M 代表男 F 代表女 不填代表未知
+		optional uint32 age = 4;        		//(目前不使用) 年龄（0-20（0）、21-30（1）、31-40（2）、41-50(3)、51-60(4)、60+(5)这几个分段）不填代表未知
+	}
+	
+
+	optional string id = 1;          			//bid request id, 一次bid request可能会包含多个曝光(impression)
+	optional uint32 at = 2; 					//拍卖方式，1为first pricing, 2为second pricing，目前统一为2
+	optional Site site = 3;          			//媒体站点信息
+	optional Device device = 4;      			//设备信息
+	optional User user = 5;          			//用户信息
+	repeated Impression impression = 6; 		//曝光机会，一次请求可含多个广告位，每个广告位为一次曝光机会
+	optional string DEPRECATED_inner_info = 7;	//忽略，无用字段
+	message App
+	{
+		optional string id = 1;					//应用程序ID，Android 上表现为程序的包名, 例如：com.rovio.angrybirds，iOS 上表现为AppStore 上的ID，例如：327860。暂无
+		optional string name = 2;				//应用程序名称
+		optional string domain = 3;				//应用程序域名。暂无
+		repeated string cat = 4;			    //应用在AppStore 或者GooglePlay 或者其他应用市场的的分类信息。暂无
+		repeated string sectioncat = 5;	        //子分类。暂无
+	}
+	optional App app = 8;            //移动app信息
+	
+}
+
+message Response
+{
+	message Bid                 
+	{
+		optional string id = 1;     			//response id per impression(dsp 标识曝光的ID)
+		optional string impid = 2;     			//必须有，标识曝光ID(设置为对应Request.Impression.id)
+		optional float price = 3;     			//出价，单位千次曝光分
+		optional string adid = 4;      			//广告ID或订单ID，跟素材上传api中的dsp_order_id相同
+		optional string nurl = 5;      			//目前不建议使用，win notice url
+		optional string adm = 6;       			//过时的，目前不使用 url已失效	
+		optional string ext = 7;       			//替换曝光监测和点击中的宏${EXT}。(base64 encoded preferred，512字节以内)
+		optional string adm_para = 8;			//传递给adm的参数列表字符串,如 http://creative.dsp.mediav.com/aa.html?cid=xxxx&pid=xxxx  该字段填充'?'后的部分,不包括问号
+		optional string deprecated_respinfo = 9;	//忽略，无用字段
+		optional string ext2 = 10;         		//replace macro ${EXT2}, in click and display monitor(base64 encoded preferred，512字节以内)
+        repeated string disp_exts = 11; 		// display monitor exts,  ${DISPLAY_EXT1/2/3}, no longer than 512 bytes
+		repeated string click_exts = 12;		// click monitor exts ${CLICK_EXT1/2/3}, no longer than 512 bytes
+		optional string ext3 = 13;         		// replace macro ${EXT3}, in click and display monitor (base64 encoded preferred，512字节以内)
+	}
+
+	message SeatBid
+	{
+		repeated Bid bid = 1;					//与request中的impression对应，可以对多个impression回复参与竞价，也可以对其中一部分回复参与竞价
+	}
+
+	optional string id = 1;          			//bid request id, 同请求ID Request.id，必须有
+	optional string bidid = 2; 	 				//没有实际使用，bid response id
+	repeated SeatBid seatbid = 3;  				//回复参与竞价信息， 目前只支持将回复结果设置在seatbid[0]
+	
+}
+

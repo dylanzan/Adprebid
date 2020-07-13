@@ -1,0 +1,47 @@
+Basic:
+  ListenPort: 8588
+
+Tencent:
+  UpstreamAddrs:
+    - 1|120.27.220.175,7021488
+    - 2|121.43.171.45:8588,11564305tttt
+    - 3|121.43.171.45:8588,11564305tttt
+    - 4|121.43.171.45:8588,11564305tttt
+  DefaultUpstreamAddr: 120.27.220.175 #192.168.170.25:898
+  TimesBackToSource: 100
+
+Yiche:
+  UpstreamAddrs:
+    - 1|120.27.220.175,7021488
+    - 2|121.43.171.45:8588,11564305tttt
+    - 3|121.43.171.45:8588,11564305tttt
+    - 4|121.43.171.45:8588,11564305tttt
+  DefaultUpstreamAddr: 120.27.220.175
+  TimesBackToSource: 100
+
+IQiyi:
+  UpstreamAddrs:
+    - 1|120.27.220.175,7021488
+    - 2|121.43.171.45:8588,11564305tttt
+    - 3|121.43.171.45:8588,11564305tttt
+    - 4|121.43.171.45:8588,11564305tttt
+  DefaultUpstreamAddr: 120.27.220.175
+  TimesBackToSource: 100
+
+Toutiao:
+  UpstreamAddrs:
+    - 1|120.27.220.175,7021488
+    - 2|121.43.171.45:8588,11564305tttt
+    - 3|121.43.171.45:8588,11564305tttt
+    - 4|121.43.171.45:8588,11564305tttt
+  DefaultUpstreamAddr: 120.27.220.175
+  TimesBackToSource: 100
+
+Youku:
+  UpstreamAddrs:
+    - 1|120.27.220.175,7021488
+    - 2|121.43.171.45:8588,11564305tttt
+    - 3|121.43.171.45:8588,11564305tttt
+    - 4|121.43.171.45:8588,11564305tttt
+  DefaultUpstreamAddr: 120.27.220.175
+  TimesBackToSource: 100

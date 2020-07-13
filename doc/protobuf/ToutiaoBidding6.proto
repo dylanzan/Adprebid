@@ -1,0 +1,634 @@
+//2019.12.11
+package com.adkit.demandsideplatform.model.rtb;
+
+option java_package = "com.adkit.demandsideplatform.model.rtb";
+option java_outer_classname = "TouTiaoBidding";
+
+enum AdType {
+    TOUTIAO_FEED_LP_LARGE = 1; // 690 * 286
+    TOUTIAO_FEED_LP_SMALL = 2; // 228 * 150
+
+    TOUTIAO_FEED_APP_LARGE = 4; // 690 * 286
+    TOUTIAO_FEED_APP_SMALL = 3; // 228 * 150
+
+    TOUTIAO_DETAIL_LP_GRAPHIC = 5; // 100 * 100 已不支持
+    TOUTIAO_DETAIL_LP_BANNER = 6;  // 690 * 238 已不支持
+
+    TUANZI_FEED_APP = 7; // 600 * 400
+    TOUTIAO_DETAIL_APP_BANNER = 9; // 428 * 238 已不支持
+    TOUTIAO_DETAIL_LP_TEXT_IMAGE = 10; // 690 * 238
+    TOUTIAO_FEED_LP_GROUP = 11; //组图 228 * 150
+    TOUTIAO_VIDEO_PATCH = 12; // 视频贴片广告 720p以上。视频比例16:9
+    NETWORK_SPLASH = 13; //开屏广告 1080x1920,1242x1863,1200x1600,1280x1530,1280x755
+
+    TOUTIAO_SPLASH = 14; //头条开屏广告 640*920 640*760 480*640 1242*1786
+
+    DUANZI_FEED_LP_LARGE = 15;  //段子推荐流-大图落地页，新样式690*286, 旧样式600*400 废弃
+    DUANZI_FEED_LP_SMALL = 16;  //段子推荐流-小图落地页，228*150
+    DUANZI_FEED_LP_GROUP = 17;  //段子推荐流-组图落地页，228*150,3张且有序
+    TOUTIAO_FEED_APP_GROUP = 18;  //头条推荐流应用组图
+    TOUTIAO_RECOMMEND_LP_SMALL = 19;  //头条视频相关推荐小图落地页
+
+    TOUTIAO_FEED_LP_VIDEO = 20;  //头条信息流落地页视频
+    TOUTIAO_FEED_APP_VIDEO = 21; // 头条信息流应用下载视频
+    TOUTIAO_RECOMMEND_APP_SMALL = 22;  //头条视频相关推荐应用下载小图
+
+    TOUTIAO_GALLERY_LP = 23; // 头条图集落地页 全屏 750*1000
+
+    DUANZI_FEED_LP_VIDEO = 24; // 段子推荐流-视频落地页
+    DUANZI_FEED_APP_VIDEO = 25; // 段子推荐流-视频应用下载
+
+    TOUTIAO_DETAIL_LP_SMALL = 26; // 头条详情页小图落地页 228*150
+    TOUTIAO_DETAIL_LP_GROUP = 27; // 头条详情页组图落地页 228*150*3
+    TOUTIAO_DETAIL_APP_LARGE = 28; // 头条详情页应用下载新大图 690*388
+
+    VIDEO_SPLASH = 29; //西瓜视频开屏广告 640*920 640*760 480*640 1242*1786
+    VIDEO_PATCH_LP_LARGE = 30; //视频后贴片落地页大图 690*388 1280*720
+
+    DUANZI_SPLASH = 31; //段子开屏 640*920 640*760 480*640 1242*1786
+    TOUTIAO_SPLASH_VIDEO_FULL = 32; //头条全屏视频开屏广告 640*1136 640*960 480*800 1242*2208
+    TOUTIAO_SPLASH_VIDEO_IMG = 33;  //头条插屏视频开屏广告
+    TOUTIAO_FEED_LP_GIF = 34;  //头条信息流落地页微动 690*388
+
+    HOTSOON_FEED_LP_LARGE = 35; //火山信息流落地页竖图 870*540
+
+    TOUTIAO_GALLERY_LERGE_LP=36; //图集尾帧_大图_落地页 690 * 388
+    TOUTIAO_GALLERY_LERGE_APP=37; //图集尾帧_大图_应用下载 690 * 388
+
+    HOTSOON_FEED_LP_VERTICAL_VIDEO = 38; //火山信息流_落地页竖版视频
+    HOTSOON_FEED_APP_VERTICAL_VIDEO = 39; //火山信息流_应用下载竖版视频
+
+    COMMON_SPLASH_GIF = 41; //通用开屏gif
+    COMMON_SPLASH = 42; //通用开屏图片
+
+    AWEME_FEED_LP_VERTICAL_VIDEO = 43; //抖音信息流_落地页竖版视频
+    AWEME_FEED_APP_VERTICAL_VIDEO = 44; //抖音信息流_应用下载竖版视频
+
+    UNION_FEED_LP_LARGE = 45; //联盟信息流_落地页_大图
+    UNION_FEED_LP_SMALL = 46; //联盟信息流_落地页_小图
+    UNION_FEED_LP_GROUP = 47; //联盟信息流_落地页_组图
+    UNION_FEED_APP_LARGE = 48; //联盟信息流_应用下载_大图
+    UNION_FEED_APP_SMALL = 49; //联盟信息流_应用下载_小图
+    UNION_FEED_APP_GROUP = 50; //联盟信息流_应用下载_组图
+    COMMON_SPLASH_VIDEO_FULL = 51; //全屏视频开屏广告 640*1136 640*960 480*800 1242*2208
+
+    COMMON_TEXTLINK_LP_CARD = 52; //详情页落地页卡片 目前有抖音POI详情页
+
+    UNION_SPLASH_LP = 53; //联盟开屏_落地页
+    UNION_SPLASH_APP = 54; //联盟开屏_应用下载
+
+    COMMON_LP_LARGE = 55; //通用_落地页_大图
+    COMMON_LP_SMALL = 56; //通用_落地页_小图
+    COMMON_LP_GROUP = 57; //通用_落地页_组图
+    COMMON_APP_LARGE = 58; //通用_应用下载_大图
+    COMMON_APP_SMALL = 59; //通用_应用下载_小图
+    COMMON_APP_GROUP = 60; //通用_应用下载_组图
+    COMMON_LP_VIDEO = 61; //通用_落地页_横版视频
+    COMMON_APP_VIDEO = 62; //通用_应用下载_横版视频
+    COMMON_LP_VERTICAL_VIDEO = 63; //通用_落地页_竖版视频
+    COMMON_APP_VERTICAL_VIDEO = 64; //通用_应用下载_竖版视频
+
+    COMMON_LP_PATCH_VIDEO = 65; //西瓜视频后贴片视频落地页 690*388 1280*720
+    COMMON_SPLASH_FULL = 66; //通用_开屏_全屏静图 1242*2208、750*1624、720*1280、1080*1920、1080*2340
+
+    COMMON_LP_NO_IMAGE = 67;//通用_落地页_无图
+
+    UNION_LP_VIDEO = 68;  //联盟视频_落地页_横版视频
+    UNION_APP_VIDEO = 69; //联盟视频_应用下载_横版视频
+    UNION_LP_VERTICAL_VIDEO = 70;  //联盟视频_落地页_竖版视频
+    UNION_APP_VERTICAL_VIDEO = 71; //联盟视频_应用下载_竖版视频
+
+    I18N_FEED_LP_LARGE   = 201; //国际化FEED大图 628*1200
+    I18N_FEED_VIDEO      = 202; //国际化视频
+};
+
+enum AdvCreativeType {
+    NONE = 0;           // 普通落地页
+    ACTION = 2;         // 电话拨打创意
+    DISCOUNT = 5;       // 优惠券
+    MAGNET_CARD = 8;    // 抖音图片磁贴附加创意
+    COMMODITY_CARD = 9; // 抖音卡片样式
+    RIGHT_CARD = 20;    // 抖音权益卡片
+    SMART_PHONE_ACTION = 14; // 智能电话附加创意
+    SHOP_WINDOW = 19;  // 火山电商卡片
+    OUTIQUE_BAR = 28;  // 头条品牌精品栏
+}
+
+enum LpType {
+    DEFAULT = 0;    // 普通落地页
+    ATLAS = 1;      // 图集落地页
+}
+
+message Pmp {
+    message Deal {
+        required uint32 id = 1;    // 私有交易id， 由exchange分配   字段需要设置成int64，后期逐渐废弃掉，使用new_id
+        optional uint32 bid_floor = 2;  // 此次展示竞价底价 (如果是pmp以这里的底价为主)
+        repeated string wseat = 3;      // 允许参与交易的广告主白名单
+        repeated string wadomain = 4;   // 允许参与竞价的广告主域名列表
+        optional uint32 at = 5;         // 1 表示first price, 2 表示Second price, 3 忽略底价
+        optional int64  new_id = 6;    //私有交易id，代替之前的id
+    }
+
+    optional uint32 private_auction = 1; // 1 表示私有交易， 0 表示公有交易
+    repeated Deal deals = 2;             // 交易列表
+}
+
+
+message AdSlot {
+    enum Position {
+        SPLASH = 1;
+        FEED = 2;
+        DETAIL = 4;
+        RECOMMEND = 8;
+        GALLERY = 16;
+        VIDEO_PATCH = 32;
+        UNION_FEED = 64;
+        TEXTLINK_CARD = 128;
+        TEXTLINK_MIDDLE_CARD = 129;
+        UNION_SPLASH = 256;
+        SEARCH = 512;
+        TAB_DRAW = 1024;
+        PRE_PATCH = 2048;
+    };
+
+    message Banner {
+        required uint32 width = 1;
+        required uint32 height = 2;
+        required Position pos = 3;
+        optional string sequence = 4;
+    };
+    required string id = 1;         // 广告位id
+    repeated Banner banner = 2;     // 广告位空间描述
+    repeated AdType ad_type = 3;    // 可接收的广告类型
+    optional uint32 bid_floor = 4;  // 单位为分
+    optional Pmp pmp = 5;
+    optional uint32 patch_video_length = 6;  //贴片广告允许的最长时间
+    optional string patch_video_title  = 7;  //贴片广告载体视频的title
+    optional uint64 channel_id = 8;          //feed流的频道
+    optional uint64 timestamp = 9;           //头条开屏广告的时间戳
+    repeated string keywords = 10;           //详情页关键字
+    optional uint64 group_id = 11;           //文章groupID
+    repeated AdvCreativeType advanced_creative_type = 12; // 可接收的落地页附加创意类型
+    optional bool support_deeplink = 13 [default=true]; //流量是否支持应用唤醒
+    repeated string img_id_list = 14;
+    repeated int64 template_id_list = 15;    //可接收的模板list
+    optional string query = 16;        //搜索词
+    repeated int64  preloaded_cids = 17;    //已经预加载成功的cid列表
+    optional string rewrited_query = 18;    //阿里重写广告搜索词
+    optional bool support_ulink = 19;       //流量是否支持ulink跳转
+};
+
+message Publisher {
+    required string id = 1;
+    optional string name = 2;
+    optional string cat = 3;
+    optional string domain = 4;
+};
+
+message Content {
+    message Producer {
+        required string id = 1;
+        optional string name = 2;
+        optional string cat = 3;
+        optional string domain = 4;
+    };
+
+    required string id = 1;
+    optional string title = 2;
+    optional string series = 3;
+    optional string url = 4;
+    optional string keywords = 5;
+    optional string contentrating = 6;
+    optional string userrating = 7;
+    optional string context = 8;
+    optional Producer producer = 9;
+    optional string language = 10;
+};
+
+message App {
+    required string id = 1 [default='11'];
+    optional string name = 2;
+    optional string domain = 3;
+    optional string ver = 4;
+    optional string bundle = 5;
+    optional uint32 privacypolicy = 6;
+    optional uint32 paid = 7;
+    optional Publisher publisher = 8;
+    optional Content content = 9;
+    optional string keywords = 10;
+    optional string scheme = 11;
+    optional string category = 12;
+};
+
+message Geo {
+    optional double lat = 1;
+    optional double lon = 2;
+    optional string country = 3;
+    optional string region = 4;   // 谈判待定
+    optional string city = 5;
+    optional string type = 6;
+};
+
+message Device {
+    enum ConnectionType {
+        Honeycomb = 1;  // 3G网
+        WIFI = 2;
+        UNKNOWN = 3;
+        NT_2G = 4;      //2G网
+        NT_4G = 5;      //4G网
+    };
+    enum DeviceType {
+        PHONE = 1;
+        TABLET = 2;
+    };
+
+    required bool dnt = 1;              // 是否允许追踪  待定
+    required string ua = 2;             // 待定 浏览器
+    optional string ip = 3;             //
+    optional Geo geo = 4;
+    optional string device_id = 5;
+    optional string device_id_md5 = 6;
+    optional string carrier = 7;
+    optional string language = 8;
+    optional string make = 9;           // 制造商
+    optional string model = 10;         // 型号
+    optional string os = 11;            // ios or android
+    optional string osv = 12;
+    optional bool js = 13;              // js support
+    optional ConnectionType connection_type = 14;
+    optional DeviceType device_type = 15;
+    optional string android_id = 16;    //对于android手机传输android_id
+    optional string android_id_md5 = 17;
+    optional string oaid = 18;  // Android Q 及更高版本
+    optional string oaid_md5 = 19;
+    optional int32 splash_height = 20; // 客户端实际的开屏尺寸（高）
+    optional int32 splash_width = 21; // 客户端实际的开屏尺寸（宽）
+};
+
+message Data {
+    message Segment {
+        optional string id = 1;     // segment 编码id, 具体的映射表线下提供
+        optional string name = 2;   // 暂时为空
+        optional string value = 3;  // 暂时为空
+    };
+    required string id = 1;        // 数据分类id
+    optional string name = 2;      // 数据分类名字
+    repeated Segment segment = 3;
+};
+
+message User {
+    enum Gender {
+        MALE = 1;
+        FEMALE = 2;
+        UNKNOWN = 3;
+    };
+    required string id = 1;
+    optional string buyer_id = 2;
+    optional string yob = 3;        // 年龄
+    optional Gender gender = 4;     // 用户性别
+    optional string keywords = 5;   // 兴趣关键词(utf-8), 以逗号分隔
+    optional Geo geo = 6;           // 地理位置
+    repeated Data data = 7;         // 额外的用户信息
+    optional string did = 8;        // 设备id //did更名为tt_id，  取头条自己定义的did，非imei、idfa.    user中的did-->改名为tt_id
+    repeated  int64 dmp_id = 9;     //dmp数据对应的id
+    optional int32 ut = 10;
+    optional string tt_id = 11;        // 设备id //did更名为tt_id，  取头条自己定义的did，非imei、idfa.    user中的did-->改名为tt_id
+};
+
+message PrivateReq {
+    message MaterialInfo
+    {
+        /* 请求素材id */
+        optional string ad_id = 1;
+        /* 请求广告主id */
+        optional string advertiser_id = 2;
+        /* 素材尺寸类型 */
+        optional AdType ad_type = 3;
+    }
+    repeated MaterialInfo materials = 1;
+    /* 京东地域汉字 */
+    optional string area_cn_name = 2;
+    /* 京东地域id */
+    optional string area_id = 3;
+}
+
+enum AuditType {
+    DELIVER_FIRST = 1;
+    AUDIT_FIRST = 2;
+    DELIVER_AND_AUDIT = 3;
+}
+enum PricingType {
+    PRICING_CPM = 1;
+    PRICING_CPC = 2;
+    PRICING_CPM_AND_CPC = 3;
+}
+
+// value 的类型, 通过字符串转换
+enum ValueType {
+    INT = 1; // int64
+    FLOAT = 2; // float64
+    STRING = 3; // string
+    BOOL = 4; // true or false
+}
+
+message ABTest {
+    required string key = 1;
+    required string value = 2;
+    required ValueType vtype = 3;
+}
+
+message BidRequest {
+    enum BidReqType {
+        ONLY_RETARGET = 1;
+        ONLY_DSP = 2;
+        RETARGET_AND_DSP = 3;
+    }
+    required string request_id = 1; //待平稳过渡后，后期会废掉这个request_id,采用新的request_id_md5
+    required string api_version = 2;  // 接口版本
+    repeated AdSlot adslots = 3;
+    required App app = 4;
+    required Device device = 5;
+    required User user = 6;
+    optional BidReqType bid_req_type = 7[default=ONLY_DSP];//请求广告模式
+    optional PrivateReq preq = 8;
+    required uint32 dsp_id = 9;           //逐渐废弃掉 字段长度受限, 使用 new_dsp_id
+    repeated uint32 merge_dsp_ids = 10;   //逐渐废弃掉， 使用 new_merge_dsp_ids
+    optional AuditType req_audit_type = 11[default=DELIVER_FIRST];//请求支持的审核方式
+    optional PricingType req_pricing_type = 12[default=PRICING_CPM];//请求支持的计费方式
+    repeated ABTest abtest = 13;
+    optional int64 new_dsp_id = 14;
+    repeated int64 new_merge_dsp_ids = 15;
+    optional string extra = 16;  //连池卡片附加信息
+    optional string request_id_md5 = 17; // [request_id + dsp_id] Md5加密，待平稳过渡后，后期会废掉原来的request_id,采用这个新的request_id_md5
+    repeated int64 exclude_cids = 18;
+    repeated int64 candidate_cids = 19; // for preload ads
+    optional uint32 is_realtime_splash = 20;
+    repeated Filter filters = 21;
+    optional int64 max_ad_num = 22 [default=1];    //本次请求最多支持广告数
+    optional bool is_preview = 23; // 这次请求是否为预览请求，默认为false
+    repeated PricingType allowed_pricing = 24;    // 该次请求允许的出价类型的广告
+    optional int64 union_encoded_slot = 25;     // 网盟加密的slot id，区别于union site，发送给京东，标识流量位
+};
+
+message MaterialMeta {
+    message ImageMeta {
+        optional string description = 1;  // 应用下载额外的描述
+        required uint32 width = 2;        // 大图小图的问题
+        required uint32 height = 3;
+        required string url = 4;          // 图片的外链, 常用格式
+        repeated string urls = 5;         //组图的外链，三个url
+        optional uint64 date_timestamp = 6;          //头条开屏广告投放的日期时间
+        optional uint64 start_timestamp = 7;        //头条开屏广告投放的生效时间
+        optional uint64 end_timestamp = 8;        //头条开屏广告投放的失效时间
+        optional string video_url = 9;    // 开屏视频下载链接
+        optional string gif_url = 10;    // 开屏GIF下载链接
+    };
+
+    message ExternalMeta {
+        enum ButtonText {
+            PHONE_DIAL = 0;
+            CONSULT_HOTLINE = 1;
+            PHONE_CONSULT = 2;
+            ATONCE_DIAL = 3;
+            CONSULT_PHONE = 4;
+            FREE_HOTLINE = 5;
+            JOIN_HOTLINE = 6;
+            ORDER_HOTLINE = 7;
+        }
+        enum CommodityButtonText {
+            TO_VISIT = 0;
+            NEW_GOODS = 1;
+            MARKET_LIST = 2;
+            SECKILL = 3;
+            PANIC_BUYING = 4;
+            HOT_SALE = 5;
+            GOODS_ADMIRE = 6;
+            MORE_INFO = 7;
+        }
+        required string url = 1;
+        optional AdvCreativeType advanced_creative_type = 2;  // 落地页附加创意类型
+        optional string phone_number = 3;          // 电话号码
+        optional ButtonText button_text = 4;       // 文本按钮
+        optional string advanced_url = 5;          // 领取优惠券，对应的落地页链接
+        optional string advanced_lp_open_url = 6;  // 领取优惠券，应用调起对应的落地页链接
+        optional LpType lp_type = 7;            // 落地页样式类型
+        repeated AtlasMeta atlas_meta = 8;      // 图集广告素材 限制个数3-10
+        optional CommodityCardMeta commodity_card_meta = 9;  // 抖音卡片样式素材
+        optional TextlinkCardMeta textlink_card_meta = 10; //连池详情页卡片素材
+        optional CommodityButtonText commodity_button_text = 11; // 电商按钮文案
+        optional CommodityCardData commodity_card_data = 12;  // 火山卡片样式素材
+        optional MagnetCardMeta magnet_card_meta = 13; //抖音图片磁贴附加创意
+        optional string phone_url = 14;          //动态请求广告电话号码的链接
+        repeated OutiqueBarMeta outique_bar_items = 15; //BPG头条精品栏，数量必须为4，每个图片的位置即是数组的位置
+    };
+
+    message AndroidApp {
+        required string app_name = 1;
+        required string download_url = 2;
+        optional string open_url = 3;      // 安装之后打开应用的url
+        optional string package = 4;
+        optional string web_url = 5;
+    };
+
+    message IosApp {
+        required string app_name = 1;
+        required string download_url = 2;
+        optional string open_url = 3;
+        optional string appleid = 4;
+        optional string ipa_url = 5;      // 越狱链接
+    };
+
+    message VideoMeta {
+        required string url = 1;
+        required uint32 height = 2;     //960*540
+        required uint32 width = 3;
+        required uint32 duration = 4;   //视频时长 毫秒
+        optional string ratio = 5;      //码率
+        optional bool support_interact = 6;   //是否支持互动数据展示
+    };
+
+    message AtlasMeta {
+        required uint32 width = 1;
+        required uint32 height = 2;    //640*640
+        required string image_url = 3;
+        required string title = 4;     //图集页标题
+        required string description = 5;  //图集页描述
+        required string label = 6;     //图集页标签
+        required string lp_url = 7;
+        optional string open_url = 8;
+    };
+
+    message CommodityCardMeta {
+        required string image_url = 1;
+        required uint32 width = 2;
+        required uint32 height = 3;    //174*174
+        required string title = 4;     //商品标题 4~9个字
+        required string source = 5;     //商品标签 2~6个字
+        optional float origin_price = 6;   //商品原价
+        optional float discount_price = 7;  //商品折后价
+        optional string lp_url = 8;
+        optional string open_url = 9;
+        optional uint64 title_id = 10;
+    };
+
+    message TextlinkCardMeta {
+        required string button_text = 1;  //按钮文案
+        required string price = 2;  //现价
+        optional string origin_price = 3;  //原价
+        optional int32  show_type = 4; //区分POI卡片
+        optional string promotion_label = 5; //促销标签
+    };
+
+    message DownloadCardMeta {
+        required string image_url = 1;
+        required uint32 width = 2;
+        required uint32 height = 3;    //148*148
+        required string title = 4;     //应用标题 4~40个字
+        required string source = 5;     //应用来源 2~8个字
+        optional string lp_url = 6;
+        optional string open_url = 7;
+    };
+
+    message MagnetCardMeta {
+        required string image_url = 1;  // 图片链接，jpg/pngf格式
+        required uint32 width = 2;      // 校验图片宽：540px
+        required uint32 height = 3;     // 校验图片高：276px
+        optional int32 start_time = 4; //  单位s/秒，整形；
+    };
+
+
+    message OutiqueBarMeta {
+        required string image_url = 1;      // 图片链接
+        optional string external_url = 2;   // H5落地页
+        optional string open_url = 3;       // 直达链接
+        optional string external_title = 4; // H5落地页标题
+        optional string MicroappOpenUrl = 5; // 小程序链接
+    };
+
+    message CommodityCardData {
+        optional string icon_url = 1;  //头像，若广告主未传，取广告计划中的【source_avartar数据】
+        optional string icon_name = 2; //头像名称，若广告主未传，取广告中的【source】字段
+        required string image_url = 3;
+        required uint32 width = 4;
+        required uint32 height = 5;    //商品卡片主图高，严格校验高=宽，且≥200像素；
+        required string title = 6;     //商品标题 4~9个字
+        required string source = 7;     //商品标签 2~6个字
+        required string lp_url = 8;     //落地页链接
+        optional string open_url = 9;   //调起链接
+        optional string source_background_color = 10; //来源背景色"#DD000A"，针对账户可配置底色；
+        optional string source_text_color = 11; //来源字颜色 "#FFFFFF"
+    };
+
+    required AdType ad_type = 1;
+    optional string nurl = 2;             // winnotice url,  RTB必填，PMP和BPG可选填
+    optional string title = 3;            // 除detail_banner之外必须
+    required string source = 4;           // 来源, 默认dsp名
+    optional ImageMeta image_banner = 5;
+    optional ExternalMeta external = 6;   // 对于落地页广告才有
+    optional AndroidApp android_app = 7;  // android应用下载才有
+    optional IosApp ios_app = 8;          // ios应用下载才有
+    repeated string show_url = 9;         // 展现监测
+    repeated string click_url = 10;       // 点击监测
+    optional bool is_inapp = 11;          // is_inapp=true以原生态打开
+    optional string ext = 12;             // 点击展示监测扩展字段
+    optional string lp_open_url = 13;     //落地页广告调起链接,落地页广告需要的时候才进行填写
+    repeated string video_play_start_url = 14; // 视频开始播放监测url
+    repeated string video_play_finish_url = 15; // 视频播放完成监测url
+    optional string source_avatar = 16;     //广告来源头像
+    repeated  ImageMeta splash_creatives = 17;     //针对的是头条开屏素材
+    optional string video_url = 18;       //视频下载链接
+    repeated string video_play_url = 19; // wifi状态视频自动开始播放监测url
+    repeated string video_play_valid_url = 20; // 视频有效播放监测url
+    optional string sub_title = 21;            // 副标题 电话拨打必填
+    optional string sdk_play_track_url = 22; // SDK视频播放监测链接
+    optional bool is_dynamic = 23;          // is_dynamic=true使用动态创意
+    repeated uint64 word_set = 24;           // 动态创意
+    optional string share_title = 25;    // 开屏广告分享简介
+    optional ImageMeta splash_share_banner = 26;   //开屏分享图片素材
+    optional bool is_canvas = 27;            // is_canvas=true使用沉浸式
+    optional bool is_external_video = 28;    //is_external_video=true使用第三方视频链接
+    optional VideoMeta video_meta = 29;      //第三方视频信息
+    optional string video_id = 30;           //头条视频唯一ID
+    repeated string interact_url = 31;       //互动监测
+    optional string splash_button_text = 32; //开屏直达调起文案， 不超过8个汉字
+    optional string textlink_card_data = 33;  //连池卡片信息 json格式 接入方根据不同模板填写(格式和卡片FE开发的npm包对应)
+    repeated string mma_effective_show_track_url_list = 34; //mma曝光的可见性监测
+    repeated string mma_effective_play_track_url_list = 35; //mma播放的可见性监测
+    repeated string card_show_url = 36;       //卡片展现监测
+    optional DownloadCardMeta download_card_meta = 37; //应用下载卡片
+    repeated string download_track_url = 38;        //应用下载监测
+    optional string button_text = 39;               //按钮文案，字数2-10，穿山甲
+};
+
+message Bid {
+    enum BidAdType {
+        RETARGET_AD = 1;//重定向广告，Adx负责对广告做ranking，比如：直投类型
+        DSP_AD = 2;//DSP广告，目前专指RTB广告
+        NON_RETARGET_AD = 3;//非重定向广告，
+    }
+    required string id = 1;
+    required string adslot_id = 2;
+    required uint32 price = 3;           // 单位为分
+    required uint64 adid = 4;            // 创意id
+    required MaterialMeta creative = 5;  // 素材
+    optional string dealid = 6;          // 如果是pmp需返回dealid字段
+    optional string cid = 7;             // 扩展id, 必须由数字组成的字符串，长度小于39位，选填，如果此字段有效则使用cid而不是adid, 如果可以通过adid(uint64)表示的建议使用adid
+    optional BidAdType bid_ad_type = 8 [default=DSP_AD];
+    optional double quality = 9;         // 直投用quality
+    optional double ctr = 10;         // 直投需要传预估ctr
+    optional AuditType bid_audit_type = 11[default=DELIVER_FIRST];//竞价响应的审核方式
+    optional PricingType bid_pricing_type = 12[default=PRICING_CPM];//竞价响应的计费方式
+    optional uint64 category_id = 13;  //品类ID
+    optional string category_name = 14; //品类名称
+    optional uint64 advertiser_id = 15; //广告主ID
+    optional string origin_id = 16;     //广告素材原始id
+    optional uint64 template_id = 17;   //连池卡片模板id
+    optional int64  order_id = 18;      //连池订单id
+    optional double relevance = 19;    //相关性评分
+    repeated string query_words = 20;  //飘红关键词(来自请求中query分词)
+};
+
+message SeatBid {
+    repeated Bid ads = 1;
+    optional string seat = 2;  // 广告来源dsp识别
+};
+
+message DspUserInfo {
+    enum DspUserType {
+        DEFAULT = 1;
+    }
+
+    message UserQuality {
+        required DspUserType usertype = 1;
+        required double quality = 2;  // value range [0, 1]
+    };
+
+    optional bool is_interested = 1; // 是否对这个用户感兴趣
+    repeated UserQuality user_scores = 2;
+};
+
+message BidResponse {
+    required string request_id = 1;
+    repeated SeatBid seatbids = 2;
+    optional uint64 error_code = 3;  // 请求出错时的错误码，用于问题排查
+    optional string error_message = 4; // 错误码对应错误信息，用于问题排查
+    optional DspUserInfo user_info = 5;
+};
+
+message DspClickNotification {
+    optional uint64 dspid = 1;
+    optional string click_uuid = 2;   // 经落地页url宏替换传递
+    optional uint32 price = 3;        // 竞标二价，经落地页url宏替换传递
+}
+
+enum FilterType {
+    AD_ID = 1;
+    CATEGORY = 2;
+    SIMONS = 3;
+}
+
+message Filter {
+    required FilterType filter_type = 1;
+    repeated uint64 ids = 2;
+    repeated string origin_ids = 3;
+}
